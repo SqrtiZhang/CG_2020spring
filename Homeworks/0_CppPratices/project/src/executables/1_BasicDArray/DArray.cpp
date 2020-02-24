@@ -7,8 +7,9 @@ DArray::DArray() {
 }
 
 // set an array with default values
-DArray::DArray(int nSize, double dValue) {
-	//TODO
+DArray::DArray(int nSize, double dValue) :m_pData(new double[nSize]),m_nSize(nSize)
+{
+	
 }
 
 DArray::DArray(const DArray& arr) {

@@ -1,5 +1,5 @@
 # 设置 CMake 的最低版本要求
-cmake_minimum_required(VERSION 3.14 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.10 FATAL_ERROR)
 
 # 设定项目
 project(example VERSION 1.0)
