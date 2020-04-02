@@ -1,0 +1,14 @@
+<RCC>
+    <qresource prefix="/MainWindow">
+        <file>Resources/images/gray.png</file>
+        <file>Resources/images/input.png</file>
+        <file>Resources/images/inverse.png</file>
+        <file>Resources/images/mirror.png</file>
+        <file>Resources/images/new.png</file>
+        <file>Resources/images/open.png</file>
+        <file>Resources/images/restore.png</file>
+        <file>Resources/images/save.png</file>
+        <file>Resources/images/saveas.png</file>
+        <file>Resources/images/title.png</file>
+    </qresource>
+</RCC>
