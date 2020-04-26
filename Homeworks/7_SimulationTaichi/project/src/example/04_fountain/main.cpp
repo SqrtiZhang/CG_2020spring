@@ -38,7 +38,7 @@ void advance(real dt) {
       auto &g = grid[i][j];
       if (g[2] > 0) {                                // No need for epsilon here
         g /= g[2];                                   //        Normalize by mass
-        g += dt * Vector3(0, -200, 0);               //                  Gravity
+        g += dt * Vector3(0, 0, 0);               //                  Gravity
         real boundary=0.05,x=(real)i/n,y=real(j)/n; //boundary thick.,node coord
         if (x < boundary||x > 1-boundary||y > 1-boundary) g=Vector3(0); //Sticky
         if (y < boundary) g[1] = std::max(0.0_f, g[1]);             //"Separate"
@@ -85,6 +85,7 @@ void add_jet() {
 }
 ////////////////////////////////////////////////////////////////////////////////
 int main() {
+	//add_object_rectangle(Vec(0.90, 0.05), Vec(0.94, 0.1), 0x87CEFA, 500, Vec(0.0, 0.0));
   GUI gui("Real-time 2D MLS-MPM", window_size, window_size);
   auto &canvas = gui.get_canvas();int f=0;
   for (int i = 0;; i++) {                              //              Main Loop

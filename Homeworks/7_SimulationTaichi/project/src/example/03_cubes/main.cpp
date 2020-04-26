@@ -1,11 +1,11 @@
 //88-Line 2D Moving Least Squares Material Point Method (MLS-MPM)[with comments]
-//#define TC_IMAGE_IO   // Uncomment this line for image exporting functionality
+#define TC_IMAGE_IO   // Uncomment this line for image exporting functionality
 #include <taichi.h>    // Note: You DO NOT have to install taichi or taichi_mpm.
 using namespace taichi;// You only need [taichi.h] - see below for instructions.
 const int n = 80 /*grid resolution (cells)*/, window_size = 800;
 const real dt = 1e-4_f, frame_dt = 1e-3_f, dx = 1.0_f / n, inv_dx = 1.0_f / dx;
 auto particle_mass = 1.0_f, vol = 1.0_f;
-auto hardening = 10.0_f, E = 1e4_f, nu = 0.2_f;
+auto hardening = 10.0_f, E = 1e3_f, nu = 0.2_f;
 real mu_0 = E / (2 * (1 + nu)), lambda_0 = E * nu / ((1+nu) * (1 - 2 * nu));
 using Vec = Vector2; using Mat = Matrix2; bool plastic = true;
 /***********************************(1)*****************************************/
@@ -102,7 +102,7 @@ int main() {
       canvas.rect(Vec(0.04), Vec(0.96)).radius(2).color(0x4FB99F).close();// Box
       for(auto p:particles)canvas.circle(p.x).radius(2).color(p.c);//Particles
       gui.update();                                              // Update image
-      // canvas.img.write_as_image(fmt::format("tmp/{:05d}.png", f++));
+	  //canvas.img.write_as_image(fmt::format("D:\\study\\USTC\\2020.spring\\USTC_CG\\Homeworks\\7_SimulationTaichi\\project\\result\\cube\\young_1e3/{:05d}.png", f++));
     }
   }
 } //----------------------------------------------------------------------------

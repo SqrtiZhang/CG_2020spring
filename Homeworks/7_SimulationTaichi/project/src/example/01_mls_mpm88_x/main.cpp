@@ -26,7 +26,7 @@ const real inv_dx = 1.0_f / dx;
 // Snow material properties
 const auto particle_mass = 1.0_f;
 const auto vol = 1.0_f;        // Particle Volume
-const auto hardening = 10.0_f; // Snow hardening factor
+const auto hardening = 1.0_f; // Snow hardening factor
 const auto E = 1e4_f;          // Young's Modulus
 const auto nu = 0.2_f;         // Poisson ratio
 const bool plastic = true;
@@ -205,6 +205,7 @@ void add_object(Vec center, int c) {
 }
 
 int main() {
+	
   GUI gui("Real-time 2D MLS-MPM", window_size, window_size);
   auto &canvas = gui.get_canvas();
 
@@ -233,7 +234,8 @@ int main() {
       gui.update();
 
       // Write to disk (optional)
-      // canvas.img.write_as_image(fmt::format("tmp/{:05d}.png", frame++));
+	  //canvas.img.write_as_image(fmt::format("a.png", frame++));
+      //canvas.img.write_as_image(fmt::format("D:\\study\\USTC\\2020.spring\\USTC_CG\\Homeworks\\7_SimulationTaichi\\project\\result\\snow\\hardening_1/{:05d}.png", frame++));
     }
   }
 }

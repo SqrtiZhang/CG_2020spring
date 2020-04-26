@@ -13,7 +13,7 @@ using Vec = Vector2;
 using Mat = Matrix2;
 
 // Window
-const int window_size = 800;
+const int window_size = 600;
 
 // Grid resolution (cells)
 const int n = 80;
@@ -46,6 +46,8 @@ struct Particle {
   real Jp;
   // Color
   int c;
+  //////////////////////////////////////////////////////////////(1)///////////////////////////////////////
+  int ptype;/*0: fluid 1: jelly 2: snow 3:wood block*/ ;
 
   Particle(Vec x, int c, Vec v=Vec(0)) :
     x(x),
@@ -53,7 +55,9 @@ struct Particle {
     F(1),
     C(0),
     Jp(1),
-    c(c) {}
+    c(c),
+  ptype(ptype){}
+  /****************************************************************************************************/
 };
 
 std::vector<Particle> particles;
@@ -80,9 +84,14 @@ void advance(real dt) {
     };
 
     // Compute current Lamé parameters [http://mpm.graphics Eqn. 86]
-    auto e = std::exp(hardening * (1.0f - p.Jp));
-    auto mu = mu_0 * e;
-    auto lambda = lambda_0 * e;
+   ////////////////////////////////////////////////////////////////////(2)/////////////////////////////////////////
+	auto e = std::exp(hardening * (1.0f - p.Jp));
+	if (p.ptype == 1) e = 0.3;
+	if (p.ptype == 3) e = 1;
+	/***********************************************************************************************************/
+	auto mu = mu_0 * e, lambda = lambda_0 * e;
+	if (p.ptype == 0) mu = 0;
+
 
     // Current volume
     real J = determinant(p.F);
