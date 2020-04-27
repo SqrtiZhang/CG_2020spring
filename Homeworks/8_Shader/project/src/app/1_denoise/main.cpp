@@ -6,6 +6,13 @@
 
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
+<<<<<<< HEAD
+=======
+
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb_image_write.h>
+
+>>>>>>> 731ca7bc1d81ce390557433493ae319044dce0ec
 #include "../../tool/Camera.h"
 #include "../../tool/SimpleLoader.h"
 
@@ -337,6 +344,7 @@ gl::Texture2D genDisplacementmap(const SimpleLoader::OGLResources* resources) {
 
     gl::Texture2D displacementmap;
     displacementmap.SetImage(0, gl::PixelDataInternalFormat::Red, 1024, 1024, gl::PixelDataFormat::Red, gl::PixelDataType::Float, displacementData);
+<<<<<<< HEAD
     //delete[] displacementData;
     displacementmap.SetWrapFilter(gl::WrapMode::Repeat, gl::WrapMode::Repeat,
         gl::MinFilter::Linear, gl::MagFilter::Linear);
@@ -346,6 +354,16 @@ gl::Texture2D genDisplacementmap(const SimpleLoader::OGLResources* resources) {
 	stbi_write_png("../data/1_denoise_displacement_map.png", 1024, 1024, 1, stbi_data, 1024);
 	delete[] stbi_data;
 	delete[] displacementData;
+=======
+    displacementmap.SetWrapFilter(gl::WrapMode::Repeat, gl::WrapMode::Repeat,
+        gl::MinFilter::Linear, gl::MagFilter::Linear);
+    stbi_uc* stbi_data = new stbi_uc[1024 * 1024];
+    for (size_t i = 0; i < 1024 * 1024; i++)
+        stbi_data[i] = static_cast<stbi_uc>(std::clamp(displacementData[i] * 255.f, 0.f, 255.f));
+    stbi_write_png("../data/1_denoise_displacement_map.png", 1024, 1024, 1, stbi_data, 1024);
+    delete[] stbi_data;
+    delete[] displacementData;
+>>>>>>> 731ca7bc1d81ce390557433493ae319044dce0ec
     return displacementmap;
 }
 
